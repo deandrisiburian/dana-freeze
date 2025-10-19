@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANA FREEZE | Secure Payment Protection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a84ff;
+            --primary-dark: #0066cc;
+            --secondary: #ff2d55;
+            --surface: #f5f5f7;
+            --surface-dark: #1d1d1f;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-light: #f5f5f7;
+            --border: #d2d2d7;
+            --border-dark: #424245;
+            --success: #30d158;
+            --warning: #ff9f0a;
+            --error: #ff453a;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #0f0f12 0%, #1a1a1e 100%);
+            color: var(--text-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            color: white;
+            font-size: 28px;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .app-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .dark-mode .app-subtitle {
+            color: #a1a1a6;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .dark-mode .card {
+            background: rgba(29, 29, 31, 0.8);
+            box-shadow: var(--shadow-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 2px 10px rgba(10, 132, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .dark-mode .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            border: 1px solid var(--border-dark);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 15px rgba(10, 132, 255, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .dark-mode .form-label {
+            color: var(--text-light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .dark-mode .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            color: var(--text-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.1);
+        }
+
+        .dark-mode .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--secondary) 0%, #d70040 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 45, 85, 0.4);
+        }
+
+        .status-area {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .dark-mode .status-area {
+            background: rgba(255, 255, 255, 0.05);
+            color: #a1a1a6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .dark-mode .footer {
+            color: #6e6e73;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .toggle-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            color: var(--text-light);
+        }
+
+        .music-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #5ac8fa 0%, #007aff 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(90, 200, 250, 0.3);
+        }
+
+        .music-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(90, 200, 250, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .dark-mode .modal-content {
+            background: var(--surface-dark);
+        }
+
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .dark-mode .modal-text {
+            color: #a1a1a6;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #e5e5ea;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .dark-mode .progress-container {
+            background: #424245;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1100;
+        }
+
+        .toast {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 320px;
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .dark-mode .toast {
+            background: var(--surface-dark);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .toast-success .toast-icon {
+            background: var(--success);
+        }
+
+        .toast-error .toast-icon {
+            background: var(--error);
+        }
+
+        .toast-message {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .card, .header, .toggle-container {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-container">
+            <button class="toggle-btn" id="themeToggle">
+                <i class="fas fa-moon"></i> Mode Gelap
+            </button>
+        </div>
+
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1 class="app-title">DANA FREEZE</h1>
+            <p class="app-subtitle">Secure Payment Protection</p>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2 class="card-title">Komunitas & Saluran</h2>
+            </div>
+            
+            <div class="button-group">
+                <a href="https://chat.whatsapp.com/JG5ugG401rN6DbOtXdBXV0?mode=ems_copy_t" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Komunitas
+                </a>
+                <a href="https://whatsapp.com/channel/0029Vb8gE2u2P59nndD2fA36" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> Saluran
+                </a>
+            </div>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2 class="card-title">Laporan Pembekuan</h2>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="nomor">
+                    <i class="fas fa-mobile-alt"></i> Nomor DANA
+                </label>
+                <input id="nomor" class="form-control" type="tel" placeholder="08xxxxxxxxxx">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="alasan">
+                    <i class="fas fa-cog"></i> Opsi Pembekuan
+                </label>
+                <select id="alasan" class="form-control">
+                    <option value="">-- Pilih Opsi --</option>
+                    <option value="Opsi Spam">Pembekuan Sementara</option>
+                    <option value="Opsi Permanen">Pemblokiran Permanen</option>
+                </select>
+            </div>
+
+            <button id="sendBtn" class="action-btn">
+                <i class="fas fa-bolt"></i> Proses Pembekuan
+            </button>
+
+            <div id="statusArea" class="status-area">
+                Status akan muncul di sini
+            </div>
+        </div>
+
+        <button id="playMusicBtn" class="music-btn">
+            <i class="fas fa-play"></i> Putar Musik Latar
+        </button>
+
+        <div class="footer fade-in">
+            <p>Website ini dibuat oleh @MexxModders. Layanan ini hanya untuk keperluan tertentu dan tidak dijamin keberhasilannya.</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="lockModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="modal-title">Memproses Permintaan</h3>
+            <p class="modal-text">Membuka aplikasi email untuk mengirim laporan...</p>
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://involved-magenta-j74lubiknd.edgeone.app/ransoxat.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Mode Terang';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Mode Gelap';
+            }
+        });
+
+        // Toast Function
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i>
+                </div>
+                <div class="toast-message">${message}</div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+            
+            // Click to dismiss
+            toast.addEventListener('click', () => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            });
+        }
+
+        // Normalize Phone Number
+        function normalizeNumber(n) { 
+            if (!n) return n; 
+            const s = n.trim().replace(/\s+/g, ''); 
+            if (/^[0][0-9]+$/.test(s)) return '08' + s.slice(1); 
+            if (/^\+/.test(s)) return s; 
+            return s; 
+        }
+
+        // Build Email Template
+        function buildTemplate(nomor, alasan) {
+            const tampilNomor = (nomor.startsWith('+') || nomor.startsWith('08')) ? nomor : '+' + nomor;
+            if (alasan === "Opsi Permanen") {
+                return { 
+                    to: 'help@dana.id', 
+                    subject: 'Laporan Penipuan & Permohonan Pembekuan', 
+                    body: `Halo Tim DANA,
+
+Saya ingin melaporkan tindakan penipuan yang dilakukan oleh pengguna DANA dengan nomor ${tampilNomor}.
+
+Kronologi singkat:
+Saya melakukan transaksi dengan akun tersebut untuk membeli barang, namun setelah saya melakukan pembayaran, pihak tersebut tidak memenuhi kesepakatan dan tidak dapat dihubungi kembali.
+
+Mohon agar akun DANA dengan nomor ${tampilNomor} segera dibekukan untuk mencegah adanya korban lain, serta mohon informasi lebih lanjut mengenai proses penanganan laporan ini.
+
+Terima kasih atas perhatian dan bantuannya.
+
+Hormat saya,  
+MexxModders`
+                };
+            }
+            return { 
+                to: 'help@dana.id', 
+                subject: 'Laporan Penipuan & Permohonan Pembekuan', 
+                body: `Halo Tim DANA,
+
+Saya ingin melaporkan tindakan penipuan yang dilakukan oleh pengguna DANA dengan nomor ${tampilNomor}.
+
+Kronologi singkat:
+Saya melakukan transaksi dengan akun tersebut untuk membeli barang, namun setelah saya melakukan pembayaran, pihak tersebut tidak memenuhi kesepakatan dan tidak dapat dihubungi kembali.
+
+Mohon agar akun DANA dengan nomor ${tampilNomor} segera dibekukan untuk mencegah adanya korban lain, serta mohon informasi lebih lanjut mengenai proses penanganan laporan ini.
+
+Terima kasih atas perhatian dan bantuannya.
+
+Hormat saya,  
+MexxModders`
+            };
+        }
+
+        // Send Button Event
+        const sendBtn = document.getElementById('sendBtn');
+        const nomorInput = document.getElementById('nomor');
+        const alasanSelect = document.getElementById('alasan');
+        const lockModal = document.getElementById('lockModal');
+        const progressBar = document.getElementById('progressBar');
+        const statusArea = document.getElementById('statusArea');
+
+        sendBtn.addEventListener('click', () => {
+            let nomor = (nomorInput.value || '').trim();
+            const alasan = (alasanSelect.value || '').trim();
+            
+            if (!nomor || !alasan) { 
+                showToast('Harap isi nomor dan pilih opsi pembekuan', 'error'); 
+                return; 
+            } 
+            
+            nomor = normalizeNumber(nomor);
+            const tpl = buildTemplate(nomor, alasan);
+
+            const intentUrl = `intent://compose?to=${encodeURIComponent(tpl.to)}&subject=${encodeURIComponent(tpl.subject)}&body=${encodeURIComponent(tpl.body)}#Intent;scheme=mailto;package=com.google.android.gm;end`;
+            const mailtoUrl = `mailto:${encodeURIComponent(tpl.to)}?subject=${encodeURIComponent(tpl.subject)}&body=${encodeURIComponent(tpl.body)}`;
+
+            sendBtn.disabled = true;
+            statusArea.textContent = 'Mempersiapkan permintaan...';
+            lockModal.style.display = 'flex'; 
+            progressBar.style.width = '0%';
+            
+            let prog = 0;
+            const progInt = setInterval(() => {
+                prog = Math.min(100, prog + Math.floor(Math.random() * 20) + 10);
+                progressBar.style.width = prog + '%';
+            }, 300);
+
+            setTimeout(() => {
+                clearInterval(progInt); 
+                progressBar.style.width = '100%';
+                
+                if (/Android/i.test(navigator.userAgent)) {
+                    window.location.href = intentUrl;
+                    showToast('Membuka aplikasi Gmail...', 'success');
+                } else {
+                    window.location.href = mailtoUrl;
+                    showToast('Membuka aplikasi email default...', 'success');
+                }
+                
+                statusArea.textContent = 'Permintaan berhasil diproses';
+                sendBtn.disabled = false;
+                
+                setTimeout(() => { 
+                    lockModal.style.display = 'none'; 
+                    progressBar.style.width = '0%'; 
+                }, 1000);
+            }, 1500);
+        });
+
+        // Music Button
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('playMusicBtn');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-play"></i> Putar Musik Latar';
+                musicBtn.style.background = 'linear-gradient(135deg, #5ac8fa 0%, #007aff 100%)';
+                showToast('Musik dihentikan', 'error');
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicBtn.innerHTML = '<i class="fas fa-pause"></i> Jeda Musik';
+                    musicBtn.style.background = 'linear-gradient(135deg, #ff2d55 0%, #d70040 100%)';
+                    showToast('Memutar musik latar', 'success');
+                    isPlaying = true;
+                }).catch((e) => {
+                    console.error(e);
+                    showToast('Browser memblokir autoplay, tekan lagi', 'error');
+                    musicBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Coba Lagi';
+                    isPlaying = false;
+                });
+            }
+        });
+
+        // Add subtle animation to cards on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
